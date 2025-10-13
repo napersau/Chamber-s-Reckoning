@@ -1,0 +1,249 @@
+/* Copy nội dung này vào styles.css */
+
+/* ===== BASE ===== */
+.roulette-container {
+  min-height: 100vh;
+  background: #0a0a0a;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(70, 0, 0, 0.1) 0%, transparent 50%);
+  position: relative;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+.bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, rgba(20, 0, 0, 0.85) 50%, rgba(10, 10, 10, 0.95) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grain-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 1;
+  animation: grain-animation 0.3s steps(10) infinite;
+}
+
+@keyframes grain-animation {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 10%); }
+  80% { transform: translate(-15%, 0); }
+  90% { transform: translate(10%, 5%); }
+}
+
+.blood-splatter {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(139, 0, 0, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.splatter-1 {
+  top: 10%;
+  right: 10%;
+  animation: blood-pulse 4s ease-in-out infinite;
+}
+
+.splatter-2 {
+  bottom: 15%;
+  left: 15%;
+  animation: blood-pulse 4s ease-in-out 2s infinite;
+}
+
+@keyframes blood-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px);
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.3;
+}
+
+.main-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ===== WARNING BANNER ===== */
+.warning-banner {
+  background: rgba(139, 0, 0, 0.2);
+  border: 2px solid #8b0000;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  animation: warning-flash 2s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+}
+
+@keyframes warning-flash {
+  0%, 100% { border-color: #8b0000; box-shadow: 0 0 20px rgba(139, 0, 0, 0.3); }
+  50% { border-color: #ff0000; box-shadow: 0 0 30px rgba(255, 0, 0, 0.5); }
+}
+
+.warning-icon {
+  color: #ff0000;
+  font-size: 1.5rem;
+  animation: warning-blink 1.5s ease-in-out infinite;
+}
+
+@keyframes warning-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.warning-text {
+  color: #ff6b6b !important;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* ===== TITLE ===== */
+.title-section {
+  margin-bottom: 40px;
+  animation: fadeInDown 1s ease;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.title-wrapper {
+  text-align: center;
+  position: relative;
+}
+
+.skull-decoration {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  animation: skull-shake 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(139, 0, 0, 0.8));
+}
+
+@keyframes skull-shake {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.game-title {
+  font-size: 4.5rem !important;
+  font-weight: 900 !important;
+  text-align: center;
+  margin: 20px 0 !important;
+  line-height: 1 !important;
+  text-shadow: 0 0 10px rgba(139, 0, 0, 0.8), 0 0 20px rgba(139, 0, 0, 0.6), 0 0 30px rgba(139, 0, 0, 0.4), 3px 3px 0 #000;
+}
+
+.title-russian {
+  display: block;
+  color: #8b0000;
+  letter-spacing: 8px;
+  animation: title-glitch 3s ease-in-out infinite;
+}
+
+.title-roulette {
+  display: block;
+  color: #ff0000;
+  letter-spacing: 12px;
+  animation: title-glitch 3s ease-in-out 0.5s infinite;
+}
+
+@keyframes title-glitch {
+  0%, 90%, 100% { 
+    transform: translate(0, 0);
+    text-shadow: 0 0 10px rgba(139, 0, 0, 0.8), 0 0 20px rgba(139, 0, 0, 0.6), 0 0 30px rgba(139, 0, 0, 0.4), 3px 3px 0 #000;
+  }
+  92% { 
+    transform: translate(-2px, 0);
+    text-shadow: 2px 0 10px rgba(255, 0, 0, 0.8), -2px 0 10px rgba(0, 255, 255, 0.8);
+  }
+  94% { 
+    transform: translate(2px, 0);
+    text-shadow: -2px 0 10px rgba(255, 0, 0, 0.8), 2px 0 10px rgba(0, 255, 255, 0.8);
+  }
+}
+
+.subtitle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.aim-icon {
+  color: #ff0000;
+  font-size: 1.5rem;
+  animation: aim-pulse 2s ease-in-out infinite;
+}
+
+@keyframes aim-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+.game-subtitle {
+  color: #999 !important;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.live-players {
+  margin-top: 20px;
+  padding: 10px 25px;
+  background: rgba(139, 0, 0, 0.15);
+  border-radius: 25px;
+  display: inline-block;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.live-text {
+  color: #ff4d4f;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+/* Còn nữa - xem file trong project */
