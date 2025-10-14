@@ -1,6 +1,7 @@
 package com.example.ChamberReckoning.dto.response;
 
 
+import com.example.ChamberReckoning.entity.Role;
 import lombok.Data;
 
 import java.time.Instant;
@@ -20,4 +21,5 @@ public class UserResponse {
     private int winCount;
     private int lossCount;
     private double eloRating;
+    private Role role;
 }

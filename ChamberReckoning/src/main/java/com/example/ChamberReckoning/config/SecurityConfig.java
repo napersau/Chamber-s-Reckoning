@@ -43,34 +43,16 @@ public class SecurityConfig {
         httpSecurity
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers(HttpMethod.POST,PUBLIC_ENDPOINTS).permitAll()
-                                .requestMatchers(HttpMethod.PUT,PUBLIC_ENDPOINTS).permitAll()
+                        request.requestMatchers("/api/v1/auth/**", "/api/v1/email/**").permitAll()
 
                                 // User
-                                .requestMatchers( "/api/v1/users/**").hasAnyRole("USER","ADMIN")
                                 .requestMatchers(HttpMethod.GET ,"/api/v1/users").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.GET ,"/api/v1/users/list-users").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.POST ,"/api/v1/users/update/{userId}").hasRole("ADMIN")
-                                // Chat
-                                .requestMatchers( "/api/v1/users/chat/**").hasAnyRole("USER","ADMIN")
-                                .requestMatchers( "/ws/**").permitAll()
+                                .requestMatchers( "/api/v1/users/**").hasAnyRole("USER","ADMIN")
 
-                                // Conversaton
-                                .requestMatchers( "/api/v1/conversations").hasAnyRole("USER","ADMIN")
-
-                                //Post
-                                .requestMatchers( "/api/v1/posts/**").hasAnyRole("USER","ADMIN")
-
-                                //Post
-                                .requestMatchers( "/api/v1/like/**").hasAnyRole("USER","ADMIN")
-
-                                //Comment
-                                .requestMatchers( "/api/v1/comments/**").hasAnyRole("USER","ADMIN")
-
-                                .requestMatchers( "/api/v1/websocket-session/**").hasAnyRole("USER","ADMIN")
-
-                                .requestMatchers( "/api/v1/friendship/**").hasAnyRole("USER","ADMIN")
-                                .requestMatchers( "/api/v1/notifications/**").hasAnyRole("USER","ADMIN")
-                                .requestMatchers( "/api/v1/post-share/**").hasAnyRole("USER","ADMIN")
+                                // Card
+                                .requestMatchers("/api/v1/cards/**").hasRole("ADMIN")
 
 
                                 .anyRequest().authenticated());

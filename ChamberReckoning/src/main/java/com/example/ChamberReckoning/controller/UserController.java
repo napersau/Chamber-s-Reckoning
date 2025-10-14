@@ -8,6 +8,8 @@ import com.example.ChamberReckoning.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
@@ -35,6 +37,24 @@ public class UserController {
     @GetMapping("/my-info")
     public ApiResponse<UserResponse> getMyInfo(@RequestParam String userId){
         UserResponse userResponse = userService.getMyInfo();
+        return ApiResponse.<UserResponse>builder()
+                .code(1000)
+                .result(userResponse)
+                .build();
+    }
+
+    @GetMapping("/list-users")
+    public ApiResponse<List<UserResponse>> getAllUsers(){
+        List<UserResponse> userResponses = userService.getAllUsers();
+        return ApiResponse.<List<UserResponse>>builder()
+                .code(1000)
+                .result(userResponses)
+                .build();
+    }
+
+    @PutMapping("/update/{userId}")
+    public ApiResponse<UserResponse> updateStatusUser(@PathVariable String userId){
+        UserResponse userResponse = userService.updateStatusUser(userId);
         return ApiResponse.<UserResponse>builder()
                 .code(1000)
                 .result(userResponse)

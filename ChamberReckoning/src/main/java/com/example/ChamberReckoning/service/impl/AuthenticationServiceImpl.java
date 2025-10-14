@@ -91,7 +91,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
 
         return IntrospectResponse.builder()
-                .userId(jwt != null ? jwt.getJWTClaimsSet().getLongClaim("userId") : null)
+                .userId(jwt != null ? jwt.getJWTClaimsSet().getStringClaim("userId") : null)
                 .valid(isValid)
                 .build();
     }

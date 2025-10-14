@@ -3,6 +3,7 @@ package com.example.ChamberReckoning.service.impl;
 
 import com.example.ChamberReckoning.dto.request.UserRequest;
 import com.example.ChamberReckoning.dto.response.UserResponse;
+import com.example.ChamberReckoning.entity.Role;
 import com.example.ChamberReckoning.entity.User;
 import com.example.ChamberReckoning.exception.AppException;
 import com.example.ChamberReckoning.exception.ErrorCode;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.List;
 
 @Service
 @Transactional
@@ -37,7 +39,11 @@ public class UserServiceImpl implements UserService {
         user.setCreatedAt(Instant.now());
         user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         user.setIsActive(true);
-        user.setRole("USER");
+        Role role = Role.builder()
+                .name("USER")
+                .id(1)
+                .build();
+        user.setRole(role);
 
         return modelMapper.map(userRepository.save(user), UserResponse.class);
     }
@@ -52,6 +58,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse getMyInfo() {
         User user = securityService.getCurrentUser();
+        return modelMapper.map(user, UserResponse.class);
+    }
+
+    @Override
+    public List<UserResponse> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(user -> modelMapper.map(user, UserResponse.class))
+                .toList();
+    }
+
+    @Override
+    public UserResponse updateStatusUser(String userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+        user.setIsActive(!user.getIsActive());
+        userRepository.save(user);
         return modelMapper.map(user, UserResponse.class);
     }
 }

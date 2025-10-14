@@ -11,6 +11,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -56,5 +58,13 @@ public class CardServiceImpl implements CardService {
     @Override
     public void deleteCard(String id) {
         cardRepository.deleteById(id);
+    }
+
+    @Override
+    public List<CardResponse> getAllCards() {
+        List<Card> cards = cardRepository.findAll();
+        return cards.stream()
+                .map(card -> modelMapper.map(card, CardResponse.class))
+                .toList();
     }
 }

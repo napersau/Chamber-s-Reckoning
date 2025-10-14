@@ -31,5 +31,5 @@ public class User {
     private Boolean isActive;
     private int googleAccountId;
     private String fullName;
-    private String role;
+    private Role role;
 }
