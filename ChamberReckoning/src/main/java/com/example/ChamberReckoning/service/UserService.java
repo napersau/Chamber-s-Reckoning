@@ -7,5 +7,5 @@ import com.example.ChamberReckoning.dto.response.UserResponse;
 public interface UserService {
     UserResponse createUser(UserRequest userRequest);
     UserResponse getUserById(String id);
-
+    UserResponse getMyInfo();
 }

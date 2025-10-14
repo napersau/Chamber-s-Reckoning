@@ -1,9 +1,10 @@
 package com.example.ChamberReckoning.config;
 
+import com.example.ChamberReckoning.dto.request.IntrospectRequest;
 import com.example.ChamberReckoning.service.AuthenticationService;
 import com.nimbusds.jose.JOSEException;
-import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
