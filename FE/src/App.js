@@ -1,17 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import HomePage from './pages/home';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import routes from './routes';
 import './App.css';
 
+const router = createBrowserRouter(routes);
+
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -16,7 +16,7 @@ public class RoomResponse {
     private int maxPlayers;
     private int currentPlayers;
     private String status; // waiting, in-progress, finished
-    private User createdBy; // userId of the room creator
+    private User createdBy;
     private String winner; // userId of the winner
     private String gameMode; // e.g., classic, ranked, custom
     private String map; // e.g., dungeon, arena, forest

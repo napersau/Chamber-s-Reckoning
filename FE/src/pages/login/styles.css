@@ -1,0 +1,624 @@
+/* ===== BASE LOGIN CONTAINER ===== */
+.ant-login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Animated background effects */
+.ant-login-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(78, 205, 196, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 75% 25%, rgba(254, 202, 87, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 25% 75%, rgba(162, 155, 254, 0.3) 0%, transparent 50%);
+  animation: float-bg 20s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes float-bg {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+}
+
+/* ===== LOGIN WRAPPER ===== */
+.ant-login-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 450px;
+  animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(50px) scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+/* ===== LOGIN CARD ===== */
+.ant-login-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.ant-login-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 35px 80px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Shimmer effect */
+.ant-login-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.ant-login-card:hover::before {
+  left: 100%;
+}
+
+/* ===== CARD HEADER ===== */
+.ant-card-header {
+  text-align: center;
+  padding: 40px 30px 20px;
+  position: relative;
+}
+
+.ant-logo-container {
+  margin-bottom: 20px;
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.ant-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 50%;
+  color: white;
+  box-shadow: 
+    0 15px 35px rgba(102, 126, 234, 0.4),
+    inset 0 -5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ant-logo::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: logoRotate 3s linear infinite;
+}
+
+@keyframes logoRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.ant-logo:hover {
+  transform: scale(1.1);
+  box-shadow: 
+    0 20px 45px rgba(102, 126, 234, 0.6),
+    inset 0 -5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ant-card-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffffff, #f0f8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin: 0 0 15px 0;
+  letter-spacing: 1px;
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)); }
+  50% { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6)); }
+}
+
+.ant-card-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== CARD CONTENT ===== */
+.ant-card-content {
+  padding: 0 30px 40px;
+}
+
+/* ===== ALERT MESSAGES ===== */
+.ant-alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  border: none;
+  animation: alertSlideIn 0.3s ease;
+}
+
+@keyframes alertSlideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ant-alert-error {
+  background: rgba(255, 77, 79, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 77, 79, 0.3);
+  color: #fff2f0;
+}
+
+.ant-alert-error svg {
+  color: #ff7875;
+}
+
+/* ===== FORM STYLES ===== */
+.ant-login-form {
+  width: 100%;
+}
+
+.ant-form-item {
+  margin-bottom: 24px;
+}
+
+.ant-form-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 8px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.ant-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 0 15px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.ant-input-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.3s;
+}
+
+.ant-input-wrapper:hover::before {
+  left: 100%;
+}
+
+.ant-input-wrapper:focus-within {
+  border-color: rgba(102, 126, 234, 0.6);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  transform: translateY(-2px);
+}
+
+.ant-input-prefix {
+  color: rgba(255, 255, 255, 0.6);
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.ant-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 15px 0;
+  font-size: 1rem;
+  color: white;
+  font-weight: 500;
+}
+
+.ant-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+}
+
+.ant-input-suffix {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.ant-input-suffix:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== FORM OPTIONS ===== */
+.ant-form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.ant-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ant-checkbox {
+  display: none;
+}
+
+.ant-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.ant-checkbox-label:hover {
+  color: white;
+}
+
+.ant-checkbox-icon {
+  color: rgba(255, 255, 255, 0.4);
+  transition: all 0.2s ease;
+}
+
+.ant-checkbox:checked + .ant-checkbox-label .ant-checkbox-icon {
+  color: #52c41a;
+  transform: scale(1.1);
+}
+
+.ant-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.ant-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  transition: width 0.3s ease;
+}
+
+.ant-link:hover {
+  color: white;
+}
+
+.ant-link:hover::after {
+  width: 100%;
+}
+
+/* ===== BUTTONS ===== */
+.ant-btn {
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  outline: none;
+}
+
+.ant-btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px 30px;
+  width: 100%;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.ant-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.ant-btn-primary:hover::before {
+  left: 100%;
+}
+
+.ant-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+.ant-btn-primary:active {
+  transform: translateY(-1px);
+}
+
+.ant-btn-loading {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.ant-loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== DIVIDER ===== */
+.ant-divider {
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.ant-divider::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.ant-divider-text {
+  padding: 0 20px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ant-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+/* ===== SOCIAL BUTTONS ===== */
+.ant-social-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.ant-btn-default {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 12px 20px;
+  flex: 1;
+  transition: all 0.3s ease;
+}
+
+.ant-social-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.google-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ===== SIGNUP LINK ===== */
+.ant-signup-link {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.ant-signup-link .ant-link {
+  color: white;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .ant-login-container {
+    padding: 15px;
+  }
+
+  .ant-login-wrapper {
+    max-width: 100%;
+  }
+
+  .ant-card-header {
+    padding: 30px 20px 15px;
+  }
+
+  .ant-card-content {
+    padding: 0 20px 30px;
+  }
+
+  .ant-card-title {
+    font-size: 1.8rem;
+  }
+
+  .ant-card-description {
+    font-size: 0.9rem;
+  }
+
+  .ant-logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .ant-btn-primary {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+
+  .ant-social-buttons {
+    flex-direction: column;
+  }
+
+  .ant-form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ant-card-header {
+    padding: 25px 15px 10px;
+  }
+
+  .ant-card-content {
+    padding: 0 15px 25px;
+  }
+
+  .ant-card-title {
+    font-size: 1.6rem;
+  }
+
+  .ant-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .ant-input {
+    padding: 12px 0;
+  }
+
+  .ant-btn-primary {
+    padding: 12px 20px;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== FOCUS STYLES ===== */
+.ant-btn:focus-visible,
+.ant-link:focus-visible,
+.ant-checkbox:focus-visible + .ant-checkbox-label {
+  outline: 2px solid rgba(102, 126, 234, 0.6);
+  outline-offset: 2px;
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+@media (prefers-color-scheme: dark) {
+  .ant-login-card {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  .ant-input-wrapper {
+    background: rgba(0, 0, 0, 0.2);
+  }
+}
