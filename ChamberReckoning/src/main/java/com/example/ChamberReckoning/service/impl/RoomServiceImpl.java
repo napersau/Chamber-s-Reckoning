@@ -46,12 +46,15 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public RoomResponse getRoomById(String roomId) {
-        return null;
+    public RoomResponse getRoomById(int roomId) {
+
+        Room room = roomRepository.findById(roomId).orElseThrow(() -> new RuntimeException("Room not found"));
+        return modelMapper.map(room, RoomResponse.class);
+
     }
 
     @Override
-    public RoomResponse updateRoom(String roomId, RoomRequest request) {
+    public RoomResponse updateRoom(int roomId, RoomRequest request) {
         return null;
     }
 
@@ -62,7 +65,11 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<RoomResponse> getAllRooms() {
-        return List.of();
+        List<Room> rooms = roomRepository.findAll();
+
+        return rooms.stream()
+                .map(room -> modelMapper.map(room, RoomResponse.class))
+                .toList();
     }
 
     @Override
