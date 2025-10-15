@@ -19,7 +19,7 @@ import java.util.List;
 public class Room {
 
     @Id
-    private int id;
+    private String id;
     private String name;
     private int round;
     private int maxPlayers;

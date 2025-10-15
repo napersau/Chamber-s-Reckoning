@@ -46,7 +46,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public RoomResponse getRoomById(int roomId) {
+    public RoomResponse getRoomById(String roomId) {
 
         Room room = roomRepository.findById(roomId).orElseThrow(() -> new RuntimeException("Room not found"));
         return modelMapper.map(room, RoomResponse.class);
@@ -54,7 +54,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public RoomResponse updateRoom(int roomId, RoomRequest request) {
+    public RoomResponse updateRoom(String roomId, RoomRequest request) {
         return null;
     }
 

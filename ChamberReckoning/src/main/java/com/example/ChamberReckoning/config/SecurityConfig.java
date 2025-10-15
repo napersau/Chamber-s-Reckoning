@@ -46,6 +46,7 @@ public class SecurityConfig {
                         request.requestMatchers("/api/v1/auth/**", "/api/v1/email/**").permitAll()
 
                                 // User
+                                .requestMatchers(HttpMethod.POST ,"/api/v1/users/register").permitAll()
                                 .requestMatchers(HttpMethod.GET ,"/api/v1/users").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.GET ,"/api/v1/users/list-users").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.POST ,"/api/v1/users/update/{userId}").hasRole("ADMIN")
@@ -53,6 +54,9 @@ public class SecurityConfig {
 
                                 // Card
                                 .requestMatchers("/api/v1/cards/**").hasRole("ADMIN")
+
+                                //Room
+                                .requestMatchers("/api/v1/rooms/**").hasAnyRole("USER","ADMIN")
 
 
                                 .anyRequest().authenticated());

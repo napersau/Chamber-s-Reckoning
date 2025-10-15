@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 public class RoomResponse {
-    private int id;
+    private String id;
     private String name;
     private int round;
     private int maxPlayers;

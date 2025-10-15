@@ -27,7 +27,7 @@ public class RoomController {
     }
 
     @GetMapping("/{roomId}")
-    public ApiResponse<RoomResponse> getRoomById(@PathVariable int roomId) {
+    public ApiResponse<RoomResponse> getRoomById(@PathVariable String roomId) {
         RoomResponse roomResponse = roomService.getRoomById(roomId);
         return ApiResponse.<RoomResponse>builder()
                 .code(1000)
