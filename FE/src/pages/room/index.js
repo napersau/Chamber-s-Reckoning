@@ -103,8 +103,8 @@ const Room = () => {
 
   const handleJoinRoomFromModal = async (joinData) => {
     try {
-      // Implement the join room logic
-      const response = await roomService.joinRoom(joinData.roomId);
+      // Implement the join room logic - pass both roomId and password
+      const response = await roomService.joinRoom(joinData.roomId, joinData.password);
       if (response.success) {
         // Join thành công, chuyển đến game
         navigate(`/game?room=${joinData.roomId}`);
@@ -326,12 +326,12 @@ const Room = () => {
                 </button>
                 
                 <button 
-                  className={`action-btn join-btn ${mappedStatus === 'full' ? 'disabled' : ''}`}
+                  className={`action-btn join-btn ${(room.currentPlayers >= room.maxPlayers || room.status === 'COMPLETED') ? 'disabled' : ''}`}
                   onClick={() => handleJoinRoom(room.id)}
-                  disabled={mappedStatus === 'full'}
+                  disabled={room.currentPlayers >= room.maxPlayers || room.status === 'COMPLETED'}
                 >
                   <Play size={16} />
-                  {mappedStatus === 'full' ? 'Phòng đầy' : 'Tham gia'}
+                  {room.currentPlayers >= room.maxPlayers ? 'Phòng đầy' : room.status === 'COMPLETED' ? 'Đã kết thúc' : 'Tham gia'}
                 </button>
               </div>
             </div>

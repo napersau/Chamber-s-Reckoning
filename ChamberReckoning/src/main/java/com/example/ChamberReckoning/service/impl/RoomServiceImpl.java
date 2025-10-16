@@ -30,7 +30,10 @@ public class RoomServiceImpl implements RoomService {
     public RoomResponse createRoom(RoomRequest request) {
         User user = securityUtil.getCurrentUser();
 
-
+        Player host = Player.builder()
+                .name(user.getUsername())
+                .id(user.getId())
+                .build();
 
         Room room = Room.builder()
                 .createdAt(Instant.now())
@@ -42,7 +45,7 @@ public class RoomServiceImpl implements RoomService {
                 .currentPlayers(1)
                 .gameMode(request.getGameMode())
                 .password(request.getPassword())
-                .player(request.getPlayer())
+                .player(List.of(host))
                 .build();
 
         return modelMapper.map(roomRepository.save(room), RoomResponse.class);

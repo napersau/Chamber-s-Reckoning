@@ -1176,23 +1176,42 @@
 
 /* Admin Footer */
 .admin-footer {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   padding: 40px 20px;
 }
 
+.admin-footer .home-btn,
 .admin-footer .logout-btn {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   padding: 12px 24px;
-  background: rgba(220, 38, 38, 0.1);
   border: 1px solid rgba(220, 38, 38, 0.3);
-  color: #dc2626;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 16px;
   font-weight: 500;
+}
+
+.admin-footer .home-btn {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #3b82f6;
+}
+
+.admin-footer .home-btn:hover {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+}
+
+.admin-footer .logout-btn {
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
 }
 
 .admin-footer .logout-btn:hover {

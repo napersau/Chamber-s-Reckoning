@@ -89,7 +89,7 @@ export const roomService = {
   joinRoom: async (roomId, password = null) => {
     try {
       const data = password ? { password } : {};
-      const response = await httpClient.post(`${API_ENDPOINTS.JOIN_ROOM}/${roomId}`, data);
+      const response = await httpClient.put(`${API_ENDPOINTS.JOIN_ROOM}/${roomId}`, data);
       
       // Backend trả về ApiResponse với format: { code: 1000, result: {...} }
       if (response.data && response.data.code === 1000) {

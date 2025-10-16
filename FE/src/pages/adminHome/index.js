@@ -8,7 +8,8 @@ import {
   CreditCard, 
   LogOut,
   Bell,
-  Shield
+  Shield,
+  Home
 } from 'lucide-react';
 import './styles.css';
 
@@ -123,6 +124,11 @@ const AdminHome = () => {
           </div>
 
           <div className="admin-footer">
+            <button className="home-btn" onClick={() => navigate('/')}>
+              <Home size={20} />
+              <span>Trang chủ</span>
+            </button>
+            
             <button className="logout-btn" onClick={handleLogout}>
               <LogOut size={20} />
               <span>Đăng xuất</span>
