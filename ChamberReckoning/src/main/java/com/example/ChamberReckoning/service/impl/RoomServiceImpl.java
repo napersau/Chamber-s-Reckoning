@@ -2,6 +2,7 @@ package com.example.ChamberReckoning.service.impl;
 
 import com.example.ChamberReckoning.dto.request.RoomRequest;
 import com.example.ChamberReckoning.dto.response.RoomResponse;
+import com.example.ChamberReckoning.entity.Player;
 import com.example.ChamberReckoning.entity.Room;
 import com.example.ChamberReckoning.entity.User;
 import com.example.ChamberReckoning.repository.RoomRepository;
@@ -28,6 +29,8 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public RoomResponse createRoom(RoomRequest request) {
         User user = securityUtil.getCurrentUser();
+
+
 
         Room room = Room.builder()
                 .createdAt(Instant.now())
@@ -75,5 +78,19 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<RoomResponse> getRoomsByName(String name) {
         return List.of();
+    }
+
+    @Override
+    public RoomResponse joinRoom(String roomId) {
+        User user = securityUtil.getCurrentUser();
+        Room room = roomRepository.findById(roomId).orElseThrow(() -> new RuntimeException("Room not found"));
+        room.setCurrentPlayers(room.getCurrentPlayers() + 1);
+        Player player = Player.builder()
+                .name(user.getUsername())
+                .id(user.getId())
+                .build();
+        room.getPlayer().add(player);
+        roomRepository.save(room);
+        return modelMapper.map(room, RoomResponse.class);
     }
 }

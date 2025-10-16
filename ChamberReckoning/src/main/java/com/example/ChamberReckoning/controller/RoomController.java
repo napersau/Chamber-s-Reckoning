@@ -43,4 +43,13 @@ public class RoomController {
                 .result(roomResponses)
                 .build();
     }
+
+    @PutMapping("/join/{roomId}")
+    public ApiResponse<RoomResponse> joinRoom(@PathVariable String roomId){
+        RoomResponse roomResponse = roomService.joinRoom(roomId);
+        return ApiResponse.<RoomResponse>builder()
+                .code(1000)
+                .result(roomResponse)
+                .build();
+    }
 }

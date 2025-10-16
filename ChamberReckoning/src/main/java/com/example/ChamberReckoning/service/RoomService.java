@@ -12,4 +12,5 @@ public interface RoomService {
     void deleteRoom(String roomId);
     List<RoomResponse> getAllRooms();
     List<RoomResponse> getRoomsByName(String name);
+    RoomResponse joinRoom(String roomId);
 }

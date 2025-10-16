@@ -1,6 +1,7 @@
 package com.example.ChamberReckoning.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -12,10 +13,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "players")
+@Builder
 public class Player {
-
     @Id
-    private int id;
+    private String id;
     private String name;
     private int health;
     private int shields;
