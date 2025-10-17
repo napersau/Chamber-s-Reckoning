@@ -43,7 +43,7 @@ public class SecurityConfig {
         httpSecurity
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers("/api/v1/auth/**", "/api/v1/email/**").permitAll()
+                        request.requestMatchers("/api/v1/auth/**", "/api/v1/email/**", "/api/v1/game/**").permitAll()
 
                                 // User
                                 .requestMatchers(HttpMethod.POST ,"/api/v1/users/register").permitAll()

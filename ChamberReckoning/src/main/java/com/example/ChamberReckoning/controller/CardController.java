@@ -25,7 +25,6 @@ public class CardController {
                 .message("Card fetched successfully")
                 .build();
     }
-
     @PostMapping("/create")
     public ApiResponse<CardResponse> createCard(@RequestBody CardRequest cardRequest){
         CardResponse cardResponse = cardService.createCard(cardRequest);
