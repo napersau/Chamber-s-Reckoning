@@ -33,4 +33,7 @@ public class Room {
     private Instant createdAt;
     private List<Card> card;
     private List<Player> player;
+    private String currentPlayerId; // ID of the player whose turn it is
+    private List<String> turnOrder; // Ordered list of player IDs for turn rotation
+    private List<Boolean> chamber;
 }

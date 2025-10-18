@@ -20,4 +20,5 @@ public class Card {
     private String cardType;
     private String effectCode;
     private String rarity;
+
 }

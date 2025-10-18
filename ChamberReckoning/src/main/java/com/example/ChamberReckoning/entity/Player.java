@@ -23,4 +23,5 @@ public class Player {
     private Boolean isLocked; //Bị hạ bài
     private Boolean isCuffed; //Bị còng
     private List<Card> card;
+    private String maxHealth;
 }

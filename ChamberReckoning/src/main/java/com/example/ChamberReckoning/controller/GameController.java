@@ -1,6 +1,7 @@
 package com.example.ChamberReckoning.controller;
 
 
+import com.example.ChamberReckoning.dto.request.ActionRequest;
 import com.example.ChamberReckoning.dto.request.RoomRequest;
 import com.example.ChamberReckoning.dto.request.StartGameRequest;
 import com.example.ChamberReckoning.dto.response.ApiResponse;
@@ -19,6 +20,15 @@ public class GameController {
     @PostMapping("/{roomId}/start")
     public ApiResponse<RoomResponse> startGame(@PathVariable String roomId, @RequestBody StartGameRequest request) {
         RoomResponse response = gameFlowService.startGame(roomId, request);
+        return ApiResponse.<RoomResponse>builder()
+                .code(1000)
+                .result(response)
+                .build();
+    }
+
+    @PostMapping("/{roomId}/action")
+    public ApiResponse<RoomResponse> playerAction(@PathVariable String roomId, @RequestBody ActionRequest request) {
+        RoomResponse response = gameFlowService.processPlayerAction(roomId, request);
         return ApiResponse.<RoomResponse>builder()
                 .code(1000)
                 .result(response)
